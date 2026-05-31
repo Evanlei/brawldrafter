@@ -1,0 +1,17 @@
+# Protect secret keys and local configs
+.env
+.env.local
+.env.*.local
+
+# Python caches and local database
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.db
+*.db-wal
+*.db-shm
+
+# Frontend build files
+node_modules/
+dist/
