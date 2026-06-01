@@ -42,22 +42,6 @@ export async function postRecommendations(
     throw err instanceof Error ? err : new Error(msg);
   }
 
-  // #region agent log
-  fetch("http://127.0.0.1:7348/ingest/7c5ff407-e6d2-4f93-ab3a-20e9eae89d54", {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "76b4d5" },
-    body: JSON.stringify({
-      sessionId: "76b4d5",
-      runId: "post-fix",
-      hypothesisId: "H-CORS",
-      location: "recommendations.ts:postRecommendations",
-      message: "recommendations response",
-      data: { url, status: response.status, ok: response.ok },
-      timestamp: Date.now(),
-    }),
-  }).catch(() => {});
-  // #endregion
-
   if (!response.ok) {
     const detail = await response.text();
     if (response.status === 405 && !isApiConfigured()) {
