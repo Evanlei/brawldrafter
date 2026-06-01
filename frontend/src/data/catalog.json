@@ -1,0 +1,655 @@
+{
+  "modes": [
+    {
+      "modeId": 1,
+      "name": "brawlBall",
+      "label": "Brawl Ball"
+    },
+    {
+      "modeId": 2,
+      "name": "knockout",
+      "label": "Knockout"
+    },
+    {
+      "modeId": 3,
+      "name": "bounty",
+      "label": "Bounty"
+    },
+    {
+      "modeId": 4,
+      "name": "hotZone",
+      "label": "Hot Zone"
+    },
+    {
+      "modeId": 5,
+      "name": "gemGrab",
+      "label": "Gem Grab"
+    },
+    {
+      "modeId": 6,
+      "name": "heist",
+      "label": "Heist"
+    }
+  ],
+  "maps": [
+    {
+      "mapId": 1,
+      "name": "Backyard Bowl",
+      "modeId": 1
+    },
+    {
+      "mapId": 37,
+      "name": "Bouncy Bowl",
+      "modeId": 1
+    },
+    {
+      "mapId": 15,
+      "name": "Center Stage",
+      "modeId": 1
+    },
+    {
+      "mapId": 34,
+      "name": "Hyperspace",
+      "modeId": 1
+    },
+    {
+      "mapId": 22,
+      "name": "Match 1123581321",
+      "modeId": 1
+    },
+    {
+      "mapId": 7,
+      "name": "Pinball Dreams",
+      "modeId": 1
+    },
+    {
+      "mapId": 35,
+      "name": "Pinhole Punt",
+      "modeId": 1
+    },
+    {
+      "mapId": 13,
+      "name": "Sneaky Fields",
+      "modeId": 1
+    },
+    {
+      "mapId": 39,
+      "name": "Sunny Soccer",
+      "modeId": 1
+    },
+    {
+      "mapId": 31,
+      "name": "Super Beach",
+      "modeId": 1
+    },
+    {
+      "mapId": 14,
+      "name": "Triple Dribble",
+      "modeId": 1
+    },
+    {
+      "mapId": 23,
+      "name": "Belle's Rock",
+      "modeId": 2
+    },
+    {
+      "mapId": 21,
+      "name": "Flaring Phoenix",
+      "modeId": 2
+    },
+    {
+      "mapId": 36,
+      "name": "Flowing Springs",
+      "modeId": 2
+    },
+    {
+      "mapId": 3,
+      "name": "Goldarm Gulch",
+      "modeId": 2
+    },
+    {
+      "mapId": 41,
+      "name": "Healthy Middle Ground",
+      "modeId": 2
+    },
+    {
+      "mapId": 2,
+      "name": "Konnakol",
+      "modeId": 2
+    },
+    {
+      "mapId": 9,
+      "name": "New Horizons",
+      "modeId": 2
+    },
+    {
+      "mapId": 38,
+      "name": "New Perspective",
+      "modeId": 2
+    },
+    {
+      "mapId": 24,
+      "name": "Out in the Open",
+      "modeId": 2
+    },
+    {
+      "mapId": 4,
+      "name": "Dry Season",
+      "modeId": 3
+    },
+    {
+      "mapId": 19,
+      "name": "Hideout",
+      "modeId": 3
+    },
+    {
+      "mapId": 8,
+      "name": "Layer Cake",
+      "modeId": 3
+    },
+    {
+      "mapId": 33,
+      "name": "Shooting Star",
+      "modeId": 3
+    },
+    {
+      "mapId": 5,
+      "name": "Abracadabra",
+      "modeId": 4
+    },
+    {
+      "mapId": 10,
+      "name": "Dueling Beetles",
+      "modeId": 4
+    },
+    {
+      "mapId": 29,
+      "name": "Golden Bay",
+      "modeId": 4
+    },
+    {
+      "mapId": 6,
+      "name": "Open Business",
+      "modeId": 4
+    },
+    {
+      "mapId": 16,
+      "name": "Parallel Plays",
+      "modeId": 4
+    },
+    {
+      "mapId": 17,
+      "name": "Ring of Fire",
+      "modeId": 4
+    },
+    {
+      "mapId": 32,
+      "name": "Double Swoosh",
+      "modeId": 5
+    },
+    {
+      "mapId": 11,
+      "name": "Gem Fort",
+      "modeId": 5
+    },
+    {
+      "mapId": 27,
+      "name": "Hard Rock Mine",
+      "modeId": 5
+    },
+    {
+      "mapId": 40,
+      "name": "Local Restaurants",
+      "modeId": 5
+    },
+    {
+      "mapId": 30,
+      "name": "On a Roll",
+      "modeId": 5
+    },
+    {
+      "mapId": 12,
+      "name": "Undermine",
+      "modeId": 5
+    },
+    {
+      "mapId": 26,
+      "name": "Bridge Too Far",
+      "modeId": 6
+    },
+    {
+      "mapId": 20,
+      "name": "Hot Potato",
+      "modeId": 6
+    },
+    {
+      "mapId": 18,
+      "name": "Kaboom Canyon",
+      "modeId": 6
+    },
+    {
+      "mapId": 25,
+      "name": "Safe Zone",
+      "modeId": 6
+    },
+    {
+      "mapId": 28,
+      "name": "Tuning Fork",
+      "modeId": 6
+    }
+  ],
+  "brawlers": [
+    {
+      "brawlerId": 16000000,
+      "name": "Brawler 16000000"
+    },
+    {
+      "brawlerId": 16000001,
+      "name": "Brawler 16000001"
+    },
+    {
+      "brawlerId": 16000002,
+      "name": "Brawler 16000002"
+    },
+    {
+      "brawlerId": 16000003,
+      "name": "Brawler 16000003"
+    },
+    {
+      "brawlerId": 16000004,
+      "name": "Brawler 16000004"
+    },
+    {
+      "brawlerId": 16000005,
+      "name": "Brawler 16000005"
+    },
+    {
+      "brawlerId": 16000006,
+      "name": "Brawler 16000006"
+    },
+    {
+      "brawlerId": 16000007,
+      "name": "Brawler 16000007"
+    },
+    {
+      "brawlerId": 16000008,
+      "name": "Brawler 16000008"
+    },
+    {
+      "brawlerId": 16000009,
+      "name": "Brawler 16000009"
+    },
+    {
+      "brawlerId": 16000010,
+      "name": "Brawler 16000010"
+    },
+    {
+      "brawlerId": 16000011,
+      "name": "Brawler 16000011"
+    },
+    {
+      "brawlerId": 16000012,
+      "name": "Brawler 16000012"
+    },
+    {
+      "brawlerId": 16000013,
+      "name": "Brawler 16000013"
+    },
+    {
+      "brawlerId": 16000014,
+      "name": "Brawler 16000014"
+    },
+    {
+      "brawlerId": 16000015,
+      "name": "Brawler 16000015"
+    },
+    {
+      "brawlerId": 16000016,
+      "name": "Brawler 16000016"
+    },
+    {
+      "brawlerId": 16000017,
+      "name": "Brawler 16000017"
+    },
+    {
+      "brawlerId": 16000018,
+      "name": "Brawler 16000018"
+    },
+    {
+      "brawlerId": 16000019,
+      "name": "Brawler 16000019"
+    },
+    {
+      "brawlerId": 16000020,
+      "name": "Brawler 16000020"
+    },
+    {
+      "brawlerId": 16000021,
+      "name": "Brawler 16000021"
+    },
+    {
+      "brawlerId": 16000022,
+      "name": "Brawler 16000022"
+    },
+    {
+      "brawlerId": 16000023,
+      "name": "Brawler 16000023"
+    },
+    {
+      "brawlerId": 16000024,
+      "name": "Brawler 16000024"
+    },
+    {
+      "brawlerId": 16000025,
+      "name": "Brawler 16000025"
+    },
+    {
+      "brawlerId": 16000026,
+      "name": "Brawler 16000026"
+    },
+    {
+      "brawlerId": 16000027,
+      "name": "Brawler 16000027"
+    },
+    {
+      "brawlerId": 16000028,
+      "name": "Brawler 16000028"
+    },
+    {
+      "brawlerId": 16000029,
+      "name": "Brawler 16000029"
+    },
+    {
+      "brawlerId": 16000030,
+      "name": "Brawler 16000030"
+    },
+    {
+      "brawlerId": 16000031,
+      "name": "Brawler 16000031"
+    },
+    {
+      "brawlerId": 16000032,
+      "name": "Brawler 16000032"
+    },
+    {
+      "brawlerId": 16000034,
+      "name": "Brawler 16000034"
+    },
+    {
+      "brawlerId": 16000035,
+      "name": "Brawler 16000035"
+    },
+    {
+      "brawlerId": 16000036,
+      "name": "Brawler 16000036"
+    },
+    {
+      "brawlerId": 16000037,
+      "name": "Brawler 16000037"
+    },
+    {
+      "brawlerId": 16000038,
+      "name": "Brawler 16000038"
+    },
+    {
+      "brawlerId": 16000039,
+      "name": "Brawler 16000039"
+    },
+    {
+      "brawlerId": 16000040,
+      "name": "Brawler 16000040"
+    },
+    {
+      "brawlerId": 16000041,
+      "name": "Brawler 16000041"
+    },
+    {
+      "brawlerId": 16000042,
+      "name": "Brawler 16000042"
+    },
+    {
+      "brawlerId": 16000043,
+      "name": "Brawler 16000043"
+    },
+    {
+      "brawlerId": 16000044,
+      "name": "Brawler 16000044"
+    },
+    {
+      "brawlerId": 16000045,
+      "name": "Brawler 16000045"
+    },
+    {
+      "brawlerId": 16000046,
+      "name": "Brawler 16000046"
+    },
+    {
+      "brawlerId": 16000047,
+      "name": "Brawler 16000047"
+    },
+    {
+      "brawlerId": 16000048,
+      "name": "Brawler 16000048"
+    },
+    {
+      "brawlerId": 16000049,
+      "name": "Brawler 16000049"
+    },
+    {
+      "brawlerId": 16000050,
+      "name": "Brawler 16000050"
+    },
+    {
+      "brawlerId": 16000051,
+      "name": "Brawler 16000051"
+    },
+    {
+      "brawlerId": 16000052,
+      "name": "Brawler 16000052"
+    },
+    {
+      "brawlerId": 16000053,
+      "name": "Brawler 16000053"
+    },
+    {
+      "brawlerId": 16000054,
+      "name": "Brawler 16000054"
+    },
+    {
+      "brawlerId": 16000056,
+      "name": "Brawler 16000056"
+    },
+    {
+      "brawlerId": 16000057,
+      "name": "Brawler 16000057"
+    },
+    {
+      "brawlerId": 16000058,
+      "name": "Brawler 16000058"
+    },
+    {
+      "brawlerId": 16000059,
+      "name": "Brawler 16000059"
+    },
+    {
+      "brawlerId": 16000060,
+      "name": "Brawler 16000060"
+    },
+    {
+      "brawlerId": 16000061,
+      "name": "Brawler 16000061"
+    },
+    {
+      "brawlerId": 16000062,
+      "name": "Brawler 16000062"
+    },
+    {
+      "brawlerId": 16000063,
+      "name": "Brawler 16000063"
+    },
+    {
+      "brawlerId": 16000064,
+      "name": "Brawler 16000064"
+    },
+    {
+      "brawlerId": 16000065,
+      "name": "Brawler 16000065"
+    },
+    {
+      "brawlerId": 16000066,
+      "name": "Brawler 16000066"
+    },
+    {
+      "brawlerId": 16000067,
+      "name": "Brawler 16000067"
+    },
+    {
+      "brawlerId": 16000068,
+      "name": "Brawler 16000068"
+    },
+    {
+      "brawlerId": 16000069,
+      "name": "Brawler 16000069"
+    },
+    {
+      "brawlerId": 16000070,
+      "name": "Brawler 16000070"
+    },
+    {
+      "brawlerId": 16000071,
+      "name": "Brawler 16000071"
+    },
+    {
+      "brawlerId": 16000072,
+      "name": "Brawler 16000072"
+    },
+    {
+      "brawlerId": 16000073,
+      "name": "Brawler 16000073"
+    },
+    {
+      "brawlerId": 16000074,
+      "name": "Brawler 16000074"
+    },
+    {
+      "brawlerId": 16000075,
+      "name": "Brawler 16000075"
+    },
+    {
+      "brawlerId": 16000076,
+      "name": "Brawler 16000076"
+    },
+    {
+      "brawlerId": 16000077,
+      "name": "Brawler 16000077"
+    },
+    {
+      "brawlerId": 16000078,
+      "name": "Brawler 16000078"
+    },
+    {
+      "brawlerId": 16000079,
+      "name": "Brawler 16000079"
+    },
+    {
+      "brawlerId": 16000080,
+      "name": "Brawler 16000080"
+    },
+    {
+      "brawlerId": 16000081,
+      "name": "Brawler 16000081"
+    },
+    {
+      "brawlerId": 16000082,
+      "name": "Brawler 16000082"
+    },
+    {
+      "brawlerId": 16000083,
+      "name": "Brawler 16000083"
+    },
+    {
+      "brawlerId": 16000084,
+      "name": "Brawler 16000084"
+    },
+    {
+      "brawlerId": 16000085,
+      "name": "Brawler 16000085"
+    },
+    {
+      "brawlerId": 16000086,
+      "name": "Brawler 16000086"
+    },
+    {
+      "brawlerId": 16000087,
+      "name": "Brawler 16000087"
+    },
+    {
+      "brawlerId": 16000089,
+      "name": "Brawler 16000089"
+    },
+    {
+      "brawlerId": 16000090,
+      "name": "Brawler 16000090"
+    },
+    {
+      "brawlerId": 16000091,
+      "name": "Brawler 16000091"
+    },
+    {
+      "brawlerId": 16000092,
+      "name": "Brawler 16000092"
+    },
+    {
+      "brawlerId": 16000093,
+      "name": "Brawler 16000093"
+    },
+    {
+      "brawlerId": 16000094,
+      "name": "Brawler 16000094"
+    },
+    {
+      "brawlerId": 16000095,
+      "name": "Brawler 16000095"
+    },
+    {
+      "brawlerId": 16000096,
+      "name": "Brawler 16000096"
+    },
+    {
+      "brawlerId": 16000097,
+      "name": "Brawler 16000097"
+    },
+    {
+      "brawlerId": 16000098,
+      "name": "Brawler 16000098"
+    },
+    {
+      "brawlerId": 16000099,
+      "name": "Brawler 16000099"
+    },
+    {
+      "brawlerId": 16000100,
+      "name": "Brawler 16000100"
+    },
+    {
+      "brawlerId": 16000101,
+      "name": "Brawler 16000101"
+    },
+    {
+      "brawlerId": 16000102,
+      "name": "Brawler 16000102"
+    },
+    {
+      "brawlerId": 16000103,
+      "name": "Brawler 16000103"
+    },
+    {
+      "brawlerId": 16000104,
+      "name": "Brawler 16000104"
+    },
+    {
+      "brawlerId": 16000105,
+      "name": "Brawler 16000105"
+    }
+  ]
+}

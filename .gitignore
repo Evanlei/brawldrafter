@@ -1,17 +1,21 @@
-# Protect secret keys and local configs
-.env
-.env.local
-.env.*.local
-
-# Python caches and local database
+# Python & Environment
+venv/
 __pycache__/
 *.pyc
-.venv/
-venv/
-*.db
-*.db-wal
-*.db-shm
 
-# Frontend build files
+# Database (Do NOT upload your training data to GitHub!)
+*.db
+*.sqlite3
+
+# ML Models (Too large for standard Git)
+*.pt
+*.pth
+
+# Frontend
 node_modules/
 dist/
+build/
+.next/
+
+# Secrets & Environment Variables
+.env
