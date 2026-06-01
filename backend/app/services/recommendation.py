@@ -15,8 +15,8 @@ from app.services.recommendation_errors import (
     InsufficientCandidatesError,
     ModelUnavailableError,
 )
-from backend.ml.dataset import load_feature_store
-from backend.ml.features import FeatureStore
+from ml.dataset import load_feature_store
+from ml.features import FeatureStore
 
 logger = logging.getLogger(__name__)
 

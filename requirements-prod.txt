@@ -1,4 +1,3 @@
-# Railway Nixpacks (Root Directory = backend). Torch installed in nixpacks.toml.
 fastapi
 uvicorn[standard]
 pydantic

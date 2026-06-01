@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from backend.ml.features import FeatureStore
-from backend.ml.inference import rank_candidates
+from ml.features import FeatureStore
+from ml.inference import rank_candidates
 from app.services.model_runtime import get_inference_model
 
 

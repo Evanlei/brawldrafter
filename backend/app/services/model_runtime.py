@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Any
 from app.core.config import settings
 
 if TYPE_CHECKING:
-    from backend.ml.inference import InferenceModel
+    from ml.inference import InferenceModel
 
 logger = logging.getLogger(__name__)
 
@@ -71,7 +71,7 @@ def get_inference_model(mode_id: int) -> InferenceModel | None:
         if not path.is_file():
             return None
 
-        from backend.ml.inference import load_inference_model
+        from ml.inference import load_inference_model
 
         meta = _metadata_for_checkpoint(path, mode_id)
         logger.info(

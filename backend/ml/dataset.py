@@ -8,7 +8,7 @@ import numpy as np
 import torch
 from torch.utils.data import Dataset
 
-from backend.ml.features import DraftState, FeatureStore, build_input_vector, input_dim
+from ml.features import DraftState, FeatureStore, build_input_vector, input_dim
 
 # (blue_picks, red_picks, map_id, winning_team)
 MatchRecord = tuple[list[int], list[int], int, str]

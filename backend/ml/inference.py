@@ -9,8 +9,8 @@ from typing import Any
 import numpy as np
 import torch
 
-from backend.ml.features import DraftState, FeatureStore, build_input_vector, input_dim
-from backend.ml.model import DraftNet, load_model
+from ml.features import DraftState, FeatureStore, build_input_vector, input_dim
+from ml.model import DraftNet, load_model
 
 
 @dataclass

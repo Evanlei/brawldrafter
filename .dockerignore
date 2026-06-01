@@ -1,0 +1,18 @@
+venv/
+__pycache__/
+*.pyc
+.git/
+.env
+frontend/node_modules/
+frontend/dist/
+*.md
+!frontend/README.md
+.pytest_cache/
+.cursor/
+agent-transcripts/
+
+# Keep these for local `railway up` / docker build (override .gitignore):
+!brawldrafter.db
+!brawldrafter.db-wal
+!brawldrafter.db-shm
+!backend/models/*.pt

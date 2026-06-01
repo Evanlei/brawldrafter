@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from backend.ml.features import FeatureStore
+from ml.features import FeatureStore
 
 # Weights aligned with spec hybrid formula (deterministic-only path).
 W_WIN_RATE = 0.40

@@ -13,9 +13,9 @@ from app.services.model_runtime import (
     has_draftnet_model,
     loaded_mode_ids,
 )
-from backend.ml.features import FeatureStore
-from backend.ml.inference import load_inference_model
-from backend.ml.model import DraftNet, save_model
+from ml.features import FeatureStore
+from ml.inference import load_inference_model
+from ml.model import DraftNet, save_model
 
 
 def _minimal_store() -> FeatureStore:
@@ -31,7 +31,7 @@ def _minimal_store() -> FeatureStore:
 
 def test_save_and_load_valid_checkpoint(tmp_path: Path) -> None:
     store = _minimal_store()
-    from backend.ml.features import input_dim
+    from ml.features import input_dim
 
     dim = input_dim(store)
     model = DraftNet(dim)
@@ -61,7 +61,7 @@ def test_load_missing_file_raises(tmp_path: Path) -> None:
 
 def test_inference_output_shape(tmp_path: Path) -> None:
     store = _minimal_store()
-    from backend.ml.features import build_input_vector, DraftState, input_dim
+    from ml.features import build_input_vector, DraftState, input_dim
 
     model = DraftNet(input_dim(store))
     path = tmp_path / "draftnet_1.pt"
@@ -78,7 +78,7 @@ def test_inference_output_shape(tmp_path: Path) -> None:
 def test_runtime_cache_loads_once(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     clear_inference_cache()
     store = _minimal_store()
-    from backend.ml.features import input_dim
+    from ml.features import input_dim
 
     model = DraftNet(input_dim(store))
     models_dir = tmp_path / "models"

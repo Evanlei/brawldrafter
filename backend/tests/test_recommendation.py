@@ -10,8 +10,8 @@ from fastapi.testclient import TestClient
 from app.main import app
 from app.services.model_runtime import clear_inference_cache
 from app.services.recommendation import RecommendationRequest, get_recommendations
-from backend.ml.features import FeatureStore, input_dim
-from backend.ml.model import DraftNet, save_model
+from ml.features import FeatureStore, input_dim
+from ml.model import DraftNet, save_model
 
 
 def test_get_recommendations_returns_three(sample_db: Path) -> None:
@@ -55,7 +55,7 @@ def test_nn_path_when_model_present(
     clear_inference_cache()
     import sqlite3
 
-    from backend.ml.dataset import load_feature_store
+    from ml.dataset import load_feature_store
 
     with sqlite3.connect(sample_db) as conn:
         store = load_feature_store(conn, mode_id=1)
@@ -154,7 +154,7 @@ def test_alpha_one_matches_deterministic_order(
     from app.core.config import get_settings
     from app.services.deterministic import rank_deterministic
     from app.services.recommendation import RecommendationRequest, get_recommendations
-    from backend.ml.dataset import load_feature_store
+    from ml.dataset import load_feature_store
 
     get_settings.cache_clear()
     monkeypatch.setenv("RECOMMENDER_ALPHA", "1.0")

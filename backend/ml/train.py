@@ -21,15 +21,15 @@ BACKEND_ROOT = PROJECT_ROOT / "backend"
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from backend.ml.dataset import (  # noqa: E402
+from ml.dataset import (  # noqa: E402
     DraftDataset,
     MatchRecord,
     augment_to_partial_states,
     load_feature_store,
     load_matches,
 )
-from backend.ml.features import input_dim  # noqa: E402
-from backend.ml.model import DraftNet, save_model  # noqa: E402
+from ml.features import input_dim  # noqa: E402
+from ml.model import DraftNet, save_model  # noqa: E402
 
 DEFAULT_DB_PATH = PROJECT_ROOT / "brawldrafter.db"
 DEFAULT_MODEL_DIR = PROJECT_ROOT / "backend" / "models"

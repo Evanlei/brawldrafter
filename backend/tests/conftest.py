@@ -160,7 +160,7 @@ def sample_db(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
 def feature_store(sample_db: Path):
     import sqlite3
 
-    from backend.ml.dataset import load_feature_store
+    from ml.dataset import load_feature_store
 
     with sqlite3.connect(sample_db) as conn:
         return load_feature_store(conn, mode_id=1)

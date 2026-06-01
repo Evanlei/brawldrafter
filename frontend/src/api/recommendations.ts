@@ -1,6 +1,5 @@
 import type { Recommendation, RecommendationPayload } from "../types/draft";
-
-const API_BASE = import.meta.env.VITE_API_BASE ?? "";
+import { apiUrl } from "./client";
 
 interface ApiRecommendation {
   brawler_id: number;
@@ -25,7 +24,7 @@ function mapRecommendation(item: ApiRecommendation): Recommendation {
 export async function postRecommendations(
   body: RecommendationPayload,
 ): Promise<Recommendation[]> {
-  const response = await fetch(`${API_BASE}/api/v1/recommendations`, {
+  const response = await fetch(apiUrl("/api/v1/recommendations"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),

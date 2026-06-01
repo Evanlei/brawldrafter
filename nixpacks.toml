@@ -1,0 +1,12 @@
+# Prefer repo-root Docker build; if Nixpacks is used, run start.sh
+[phases.setup]
+nixPkgs = ["python311"]
+
+[phases.install]
+cmds = [
+  "pip install torch --index-url https://download.pytorch.org/whl/cpu",
+  "pip install -r requirements-prod.txt",
+]
+
+[start]
+cmd = "sh start.sh"
