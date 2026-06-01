@@ -122,5 +122,6 @@ Redeploy after changing env vars.
 | `ModuleNotFoundError: backend` | Pull latest; imports use `ml` + `start.sh` |
 | Empty catalog / 503 recommendations | DB missing on `/data` — complete step 3 |
 | Recommendations **405** on Vercel | `VITE_API_BASE` missing `https://` (becomes a relative path), or redeploy with `frontend/vercel.json` proxy / remove `VITE_API_BASE` |
+| Recommendations **Load failed** (Safari) | Cross-origin call to Railway blocked by CORS — remove `VITE_API_BASE` on Vercel (app uses `/api` proxy) or match `FRONTEND_ORIGIN` to your exact site URL |
 | `DATABASE_URL` points at `/app/...` | Wrong path — use `/data/brawldrafter.db` or let `start.sh` set it when the volume file exists |
 | PyTorch OOM | Upgrade Railway plan RAM (≥2GB) |

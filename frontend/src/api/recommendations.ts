@@ -24,11 +24,39 @@ function mapRecommendation(item: ApiRecommendation): Recommendation {
 export async function postRecommendations(
   body: RecommendationPayload,
 ): Promise<Recommendation[]> {
-  const response = await fetch(apiUrl("/api/v1/recommendations"), {
+  const url = apiUrl("/api/v1/recommendations");
+  let response: Response;
+  try {
+    response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : "Network error";
+    if (/load failed|failed to fetch/i.test(msg)) {
+      throw new Error(
+        "Cannot reach the API (network or CORS). Redeploy the frontend or remove VITE_API_BASE so requests use the /api proxy.",
+      );
+    }
+    throw err instanceof Error ? err : new Error(msg);
+  }
+
+  // #region agent log
+  fetch("http://127.0.0.1:7348/ingest/7c5ff407-e6d2-4f93-ab3a-20e9eae89d54", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
+    headers: { "Content-Type": "application/json", "X-Debug-Session-Id": "76b4d5" },
+    body: JSON.stringify({
+      sessionId: "76b4d5",
+      runId: "post-fix",
+      hypothesisId: "H-CORS",
+      location: "recommendations.ts:postRecommendations",
+      message: "recommendations response",
+      data: { url, status: response.status, ok: response.ok },
+      timestamp: Date.now(),
+    }),
+  }).catch(() => {});
+  // #endregion
 
   if (!response.ok) {
     const detail = await response.text();
