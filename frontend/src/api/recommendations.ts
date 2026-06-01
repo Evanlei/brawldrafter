@@ -4,8 +4,10 @@ import { apiUrl, isApiConfigured } from "./client";
 interface ApiRecommendation {
   brawler_id: number;
   name: string;
-  map_win_rate: number;
-  pick_score: number;
+  map_win_rate?: number;
+  pick_score?: number;
+  /** @deprecated pre-b99ec1b API */
+  confidence?: number;
   reason: string;
 }
 
@@ -14,11 +16,12 @@ interface ApiResponse {
 }
 
 function mapRecommendation(item: ApiRecommendation): Recommendation {
+  const legacy = item.confidence ?? 0;
   return {
     brawlerId: item.brawler_id,
     name: item.name,
-    mapWinRate: item.map_win_rate,
-    pickScore: item.pick_score,
+    mapWinRate: item.map_win_rate ?? 0,
+    pickScore: item.pick_score ?? legacy,
     reason: item.reason,
   };
 }
