@@ -121,6 +121,6 @@ Redeploy after changing env vars.
 | Build: `COPY ... models` failed | Removed — commit `draftnet_*.pt` to git instead |
 | `ModuleNotFoundError: backend` | Pull latest; imports use `ml` + `start.sh` |
 | Empty catalog / 503 recommendations | DB missing on `/data` — complete step 3 |
-| Recommendations **405** on Vercel | Redeploy frontend with `frontend/vercel.json` API proxy, or set `VITE_API_BASE` to your Railway URL |
+| Recommendations **405** on Vercel | `VITE_API_BASE` missing `https://` (becomes a relative path), or redeploy with `frontend/vercel.json` proxy / remove `VITE_API_BASE` |
 | `DATABASE_URL` points at `/app/...` | Wrong path — use `/data/brawldrafter.db` or let `start.sh` set it when the volume file exists |
 | PyTorch OOM | Upgrade Railway plan RAM (≥2GB) |
