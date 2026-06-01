@@ -8,7 +8,12 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from app.core.config import settings
-from app.services.deterministic import confidence_from_scores, rank_deterministic
+from app.services.deterministic import (
+    adjusted_map_win_rate,
+    confidence_from_scores,
+    map_baseline_win_rate,
+    rank_deterministic,
+)
 from app.services.model_runtime import has_draftnet_model
 from app.services.nn_scorer import normalize_scores, score_candidates_nn
 from app.services.recommendation_errors import (
@@ -218,13 +223,20 @@ def get_recommendations(request: RecommendationRequest) -> list[RecommendationIt
     )
     top = fused[:3]
     pick_scores = confidence_from_scores([score for _, score, _ in top])
+    baseline = map_baseline_win_rate(request.map_id, store, sample_sizes)
 
     return [
         RecommendationItem(
             brawler_id=brawler_id,
             name=brawler_names.get(brawler_id, f"Brawler {brawler_id}"),
             map_win_rate=round(
-                float(store.win_rates.get((brawler_id, request.map_id), 0.0)),
+                adjusted_map_win_rate(
+                    brawler_id,
+                    request.map_id,
+                    store,
+                    sample_sizes,
+                    baseline=baseline,
+                ),
                 4,
             ),
             pick_score=round(pick_score, 4),

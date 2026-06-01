@@ -69,3 +69,13 @@ def test_confidence_from_scores_spreads_values() -> None:
 def test_confidence_flat_scores_use_default() -> None:
     confidences = confidence_from_scores([0.5, 0.5, 0.5])
     assert confidences == [0.72, 0.72, 0.72]
+
+
+def test_adjusted_win_rate_shrinks_small_samples(feature_store) -> None:
+    from app.services.deterministic import adjusted_map_win_rate, map_baseline_win_rate
+
+    sample_sizes = {(99, 1): 2, (1, 1): 80}
+    baseline = map_baseline_win_rate(1, feature_store, sample_sizes)
+    raw_perfect = adjusted_map_win_rate(99, 1, feature_store, sample_sizes, baseline=baseline)
+    assert raw_perfect < 1.0
+    assert raw_perfect > baseline * 0.9

@@ -12,6 +12,9 @@ W_COUNTER = 0.30
 W_SYNERGY = 0.20
 W_RELIABILITY = 0.10
 RELIABILITY_SAMPLE_CAP = 200.0
+# Pseudo-match count pulling brawler WR toward map baseline (reduces 100% noise on n=1–3).
+WIN_RATE_SHRINKAGE_PRIOR = 20.0
+MIN_SAMPLE_FULL_WEIGHT = 30
 
 
 @dataclass(frozen=True)
@@ -37,6 +40,48 @@ def _lookup_win_rate(store: FeatureStore, brawler_id: int, map_id: int) -> float
     return float(store.win_rates.get((brawler_id, map_id), 0.0))
 
 
+def map_baseline_win_rate(
+    map_id: int,
+    store: FeatureStore,
+    sample_sizes: dict[tuple[int, int], int] | None,
+) -> float:
+    """Sample-size-weighted average raw win rate on this map."""
+    sizes = sample_sizes or {}
+    weighted = 0.0
+    total_n = 0
+    for (brawler_id, mid), raw_wr in store.win_rates.items():
+        if mid != map_id:
+            continue
+        n = sizes.get((brawler_id, map_id), 0)
+        if n <= 0:
+            continue
+        weighted += float(raw_wr) * n
+        total_n += n
+    if total_n <= 0:
+        return 0.5
+    return weighted / total_n
+
+
+def adjusted_map_win_rate(
+    brawler_id: int,
+    map_id: int,
+    store: FeatureStore,
+    sample_sizes: dict[tuple[int, int], int] | None,
+    *,
+    baseline: float | None = None,
+) -> float:
+    """
+    Shrink raw map win rate toward the map baseline so small samples are not shown as 100%.
+    """
+    raw = _lookup_win_rate(store, brawler_id, map_id)
+    n = (sample_sizes or {}).get((brawler_id, map_id), 0)
+    if n <= 0:
+        return 0.0
+    base = baseline if baseline is not None else map_baseline_win_rate(map_id, store, sample_sizes)
+    prior = WIN_RATE_SHRINKAGE_PRIOR
+    return (raw * n + base * prior) / (n + prior)
+
+
 def _reliability(sample_size: int) -> float:
     return min(max(sample_size, 0) / RELIABILITY_SAMPLE_CAP, 1.0)
 
@@ -49,6 +94,7 @@ def _build_reason(
     *,
     brawler_name: str,
     win_rate: float,
+    sample_size: int,
     best_counter: tuple[int, float] | None,
     best_synergy: tuple[int, float] | None,
     counter_names: dict[int, str],
@@ -56,9 +102,13 @@ def _build_reason(
 ) -> str:
     candidates: list[tuple[float, str]] = []
 
-    if win_rate > 0:
+    if win_rate > 0 and sample_size > 0:
+        games_note = f", {sample_size} matches" if sample_size < MIN_SAMPLE_FULL_WEIGHT else ""
         candidates.append(
-            (win_rate * W_WIN_RATE, f"Strong map win rate ({_format_pct(win_rate)}) for {brawler_name}")
+            (
+                win_rate * W_WIN_RATE,
+                f"Map win rate ({_format_pct(win_rate)}{games_note}) for {brawler_name}",
+            )
         )
     if best_counter and best_counter[1] > 0:
         red_name = counter_names.get(best_counter[0], f"Brawler {best_counter[0]}")
@@ -94,8 +144,15 @@ def score_candidate(
     brawler_names: dict[int, str],
     sample_sizes: dict[tuple[int, int], int] | None = None,
 ) -> DeterministicScore:
-    win_rate = _lookup_win_rate(store, candidate_id, map_id)
     sample_size = (sample_sizes or {}).get((candidate_id, map_id), 0)
+    baseline = map_baseline_win_rate(map_id, store, sample_sizes)
+    win_rate = adjusted_map_win_rate(
+        candidate_id,
+        map_id,
+        store,
+        sample_sizes,
+        baseline=baseline,
+    )
 
     counter_values = [
         (red_id, _lookup_counter(store, candidate_id, red_id, map_id)) for red_id in red_picks
@@ -120,6 +177,7 @@ def score_candidate(
     reason = _build_reason(
         brawler_name=brawler_name,
         win_rate=win_rate,
+        sample_size=sample_size,
         best_counter=best_counter,
         best_synergy=best_synergy,
         counter_names=brawler_names,
@@ -173,7 +231,9 @@ def confidence_from_scores(scores: list[float]) -> list[float]:
 
 __all__ = [
     "DeterministicScore",
+    "adjusted_map_win_rate",
     "confidence_from_scores",
+    "map_baseline_win_rate",
     "rank_deterministic",
     "score_candidate",
 ]
