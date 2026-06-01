@@ -1,5 +1,5 @@
 import type { Recommendation, RecommendationPayload } from "../types/draft";
-import { apiUrl } from "./client";
+import { apiUrl, isApiConfigured } from "./client";
 
 interface ApiRecommendation {
   brawler_id: number;
@@ -32,6 +32,11 @@ export async function postRecommendations(
 
   if (!response.ok) {
     const detail = await response.text();
+    if (response.status === 405 && !isApiConfigured()) {
+      throw new Error(
+        "Could not reach the API. Redeploy the frontend after pulling latest vercel.json, or set VITE_API_BASE to your Railway URL.",
+      );
+    }
     throw new Error(detail || `Request failed (${response.status})`);
   }
 

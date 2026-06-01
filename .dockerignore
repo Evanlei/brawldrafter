@@ -10,9 +10,3 @@ frontend/dist/
 .pytest_cache/
 .cursor/
 agent-transcripts/
-
-# Keep these for local `railway up` / docker build (override .gitignore):
-!brawldrafter.db
-!brawldrafter.db-wal
-!brawldrafter.db-shm
-!backend/models/*.pt

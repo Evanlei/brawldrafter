@@ -40,7 +40,7 @@ Vercel is a good fit for **this frontend only**. The API uses PyTorch + SQLite a
 2. Set **Root Directory** to `frontend`.
 3. Build settings (defaults are fine): Build `npm run build`, Output `dist`.
 4. Add environment variable:
-   - `VITE_API_BASE` = `https://your-api-host.example.com` (no trailing slash)
+   - `VITE_API_BASE` = `https://your-api-host.example.com` (optional; `vercel.json` proxies `/api/*` to Railway when unset)
 5. Deploy.
 
 On the API host, set `FRONTEND_ORIGIN` to your Vercel URL (e.g. `https://brawldrafter.vercel.app`) so CORS works.

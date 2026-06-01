@@ -7,9 +7,11 @@ __pycache__/
 *.db
 *.sqlite3
 
-# ML Models (Too large for standard Git)
+# ML Models (large checkpoints stay ignored; per-mode DraftNet may be committed for deploy)
 *.pt
 *.pth
+!backend/models/
+!backend/models/draftnet_*.pt
 
 # Frontend
 node_modules/

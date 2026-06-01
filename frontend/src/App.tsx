@@ -20,8 +20,8 @@ export default function App() {
   useEffect(() => {
     fetchCatalog()
       .then((catalog) => loadCatalog(catalog))
-      .catch(() => {
-        /* static catalog.json remains the fallback in draftStore */
+      .catch((error) => {
+        console.warn("Catalog API unavailable; using bundled catalog.", error);
       });
   }, [loadCatalog]);
 
