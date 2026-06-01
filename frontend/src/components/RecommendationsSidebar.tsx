@@ -1,6 +1,14 @@
-import { formatConfidence } from "../constants/draftSteps";
+import { BrawlerPortrait } from "./BrawlerPortrait";
+import { formatWinRate } from "../constants/draftSteps";
 import { shouldFetchRecommendations } from "../store/selectors";
 import { useDraftStore } from "../store/draftStore";
+
+function displayWinRate(mapWinRate: number, pickScore: number): { label: string; value: string } {
+  if (mapWinRate > 0) {
+    return { label: "Map win rate", value: formatWinRate(mapWinRate) };
+  }
+  return { label: "Pick fit", value: formatWinRate(pickScore) };
+}
 
 export function RecommendationsSidebar() {
   const session = useDraftStore((s) => s.session);
@@ -15,17 +23,17 @@ export function RecommendationsSidebar() {
   const canRecommend = shouldFetchRecommendations(session);
 
   return (
-    <aside className="flex w-full flex-col rounded-xl border border-slate-800 bg-slate-900/80 p-4 lg:w-80 lg:shrink-0">
+    <aside className="flex w-full flex-col rounded-xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950/90 p-4 shadow-lg shadow-black/25 lg:w-80 lg:shrink-0">
       <div className="mb-4 flex items-start justify-between gap-2">
         <div>
           <h2 className="text-lg font-semibold text-white">Recommendations</h2>
-          <p className="text-xs text-slate-400">Blue-team pick suggestions — click to select</p>
+          <p className="text-xs text-slate-400">Blue pick suggestions — tap to draft</p>
         </div>
         {canRecommend && (
           <button
             type="button"
             onClick={fetchRecommendations}
-            className="rounded-md border border-slate-700 px-2 py-1 text-xs text-slate-300 hover:border-slate-500"
+            className="rounded-md border border-slate-700 px-2 py-1 text-xs text-slate-300 transition hover:border-sky-500/50 hover:text-white"
           >
             Refresh
           </button>
@@ -58,26 +66,35 @@ export function RecommendationsSidebar() {
 
       {canRecommend && recommendations.status === "success" && (
         <ul className="space-y-3">
-          {recommendations.items.map((item, index) => (
-            <li key={item.brawlerId}>
-              <button
-                type="button"
-                onClick={() => selectBrawlerForPick(item.brawlerId)}
-                className="w-full rounded-lg border border-slate-800 bg-slate-950/60 p-3 text-left transition hover:border-sky-600 hover:bg-slate-900"
-              >
-              <div className="mb-1 flex items-center justify-between gap-2">
-                <span className="text-xs font-semibold uppercase tracking-wide text-amber-400">
-                  #{index + 1}
-                </span>
-                <span className="text-sm font-semibold text-sky-300">
-                  {formatConfidence(item.confidence)}
-                </span>
-              </div>
-              <p className="font-medium text-white">{item.name}</p>
-              <p className="mt-1 text-xs leading-relaxed text-slate-400">{item.reason}</p>
-              </button>
-            </li>
-          ))}
+          {recommendations.items.map((item, index) => {
+            const stat = displayWinRate(item.mapWinRate, item.pickScore);
+            return (
+              <li key={item.brawlerId}>
+                <button
+                  type="button"
+                  onClick={() => selectBrawlerForPick(item.brawlerId)}
+                  className="flex w-full gap-3 rounded-xl border border-slate-800 bg-slate-950/70 p-3 text-left transition hover:border-sky-500/50 hover:bg-slate-900"
+                >
+                  <BrawlerPortrait brawlerId={item.brawlerId} name={item.name} size="lg" />
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-1 flex items-start justify-between gap-2">
+                      <span className="text-xs font-semibold uppercase tracking-wide text-amber-400">
+                        #{index + 1}
+                      </span>
+                      <div className="text-right">
+                        <p className="text-lg font-bold leading-none text-sky-300">{stat.value}</p>
+                        <p className="text-[10px] uppercase tracking-wide text-slate-500">
+                          {stat.label}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="truncate font-semibold text-white">{item.name}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-slate-400">{item.reason}</p>
+                  </div>
+                </button>
+              </li>
+            );
+          })}
         </ul>
       )}
     </aside>

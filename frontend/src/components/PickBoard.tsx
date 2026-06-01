@@ -1,3 +1,4 @@
+import { BrawlerPortrait } from "./BrawlerPortrait";
 import { PICKS_PER_TEAM, teamLabel } from "../constants/draftSteps";
 import { getBrawlerName, getCurrentPickStep, isDraftComplete } from "../store/selectors";
 import { useDraftStore } from "../store/draftStore";
@@ -36,7 +37,7 @@ function PickRow({ team }: PickRowProps) {
           return (
             <div
               key={`${team}-pick-${slotIndex}`}
-              className={`min-w-[7.5rem] rounded-lg border px-3 py-2 text-sm ${
+              className={`flex min-w-[5.5rem] flex-col items-center gap-1.5 rounded-xl border p-2 text-sm ${
                 isActive
                   ? "border-amber-400 bg-amber-400/10 ring-2 ring-amber-400/40"
                   : isBlue
@@ -44,10 +45,19 @@ function PickRow({ team }: PickRowProps) {
                     : "border-rose-800 bg-rose-950/40"
               }`}
             >
-              <span className="block text-xs uppercase tracking-wide text-slate-500">
+              {brawlerId != null && name ? (
+                <BrawlerPortrait brawlerId={brawlerId} name={name} size="sm" />
+              ) : (
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-dashed border-slate-600 text-slate-600">
+                  —
+                </div>
+              )}
+              <span className="block text-[10px] uppercase tracking-wide text-slate-500">
                 Pick {slotIndex + 1}
               </span>
-              <span className="block truncate font-medium">{name ?? "—"}</span>
+              <span className="block max-w-full truncate text-xs font-semibold uppercase">
+                {name ?? "—"}
+              </span>
             </div>
           );
         })}

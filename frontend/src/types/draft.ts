@@ -30,7 +30,8 @@ export interface DraftStep {
 export interface Recommendation {
   brawlerId: number;
   name: string;
-  confidence: number;
+  mapWinRate: number;
+  pickScore: number;
   reason: string;
 }
 

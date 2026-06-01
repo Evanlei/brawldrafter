@@ -27,7 +27,7 @@ def test_get_recommendations_returns_three(sample_db: Path) -> None:
     )
     items = get_recommendations(request)
     assert len(items) == 3
-    assert items[0].confidence >= items[1].confidence >= items[2].confidence
+    assert items[0].pick_score >= items[1].pick_score >= items[2].pick_score
     assert all(item.name.startswith("Brawler") or item.name in {"Tara", "Shelly"} for item in items)
 
 

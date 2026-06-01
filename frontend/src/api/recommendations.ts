@@ -4,7 +4,8 @@ import { apiUrl, isApiConfigured } from "./client";
 interface ApiRecommendation {
   brawler_id: number;
   name: string;
-  confidence: number;
+  map_win_rate: number;
+  pick_score: number;
   reason: string;
 }
 
@@ -16,7 +17,8 @@ function mapRecommendation(item: ApiRecommendation): Recommendation {
   return {
     brawlerId: item.brawler_id,
     name: item.name,
-    confidence: item.confidence,
+    mapWinRate: item.map_win_rate,
+    pickScore: item.pick_score,
     reason: item.reason,
   };
 }

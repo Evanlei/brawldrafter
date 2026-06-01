@@ -32,6 +32,6 @@ export function teamLabel(team: Team): string {
   return team === "blue" ? "Blue" : "Red";
 }
 
-export function formatConfidence(value: number): string {
+export function formatWinRate(value: number): string {
   return `${Math.round(value * 100)}%`;
 }

@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 
+import { BrawlerPortrait } from "./BrawlerPortrait";
 import { getAvailableBrawlers } from "../store/selectors";
 import { useDraftStore } from "../store/draftStore";
 
@@ -26,11 +27,7 @@ export function BrawlerGrid() {
     if (!q) {
       return available;
     }
-    return available.filter(
-      (b) =>
-        b.name.toLowerCase().includes(q) ||
-        String(b.brawlerId).includes(q),
-    );
+    return available.filter((b) => b.name.toLowerCase().includes(q));
   }, [available, query]);
 
   const handleSelect = (brawlerId: number) => {
@@ -55,7 +52,7 @@ export function BrawlerGrid() {
       : "Select a brawler for the active pick";
 
   return (
-    <section className="flex min-h-0 flex-1 flex-col rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+    <section className="flex min-h-0 flex-1 flex-col rounded-xl border border-slate-800 bg-slate-900/60 p-4 shadow-lg shadow-black/20">
       <div className="mb-3 flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="text-lg font-semibold text-white">Brawlers</h2>
@@ -66,20 +63,27 @@ export function BrawlerGrid() {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="Search brawlers..."
-          className="w-full max-w-xs rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-sky-500 focus:outline-none"
+          className="w-full max-w-xs rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500/40"
         />
       </div>
-      <div className="min-h-0 flex-1 overflow-y-auto">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      <div className="min-h-0 flex-1 overflow-y-auto pr-1">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
           {filtered.map((brawler) => (
             <button
               key={brawler.brawlerId}
               type="button"
               onClick={() => handleSelect(brawler.brawlerId)}
-              className="rounded-lg border border-slate-800 bg-slate-950/70 px-3 py-2 text-left text-sm transition hover:border-sky-600 hover:bg-sky-950/30"
+              className="group flex flex-col items-center gap-2 rounded-xl border border-slate-800 bg-slate-950/80 p-2 transition hover:border-sky-500/60 hover:bg-sky-950/25 hover:shadow-md hover:shadow-sky-900/20"
             >
-              <span className="block truncate font-medium">{brawler.name}</span>
-              <span className="block text-xs text-slate-500">#{brawler.brawlerId}</span>
+              <BrawlerPortrait
+                brawlerId={brawler.brawlerId}
+                name={brawler.name}
+                size="md"
+                className="ring-slate-700 transition group-hover:ring-sky-500/50"
+              />
+              <span className="w-full truncate text-center text-xs font-semibold uppercase tracking-wide text-slate-100">
+                {brawler.name}
+              </span>
             </button>
           ))}
         </div>

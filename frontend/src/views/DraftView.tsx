@@ -39,7 +39,7 @@ export function DraftView() {
   const draftComplete = isDraftComplete(session);
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-6">
+    <div className="mx-auto flex min-h-screen max-w-[90rem] flex-col bg-slate-950 px-4 py-6">
       <header className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-sky-400">Live draft</p>

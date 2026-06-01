@@ -38,7 +38,8 @@ class RecommendationRequestBody(BaseModel):
 class RecommendationItemResponse(BaseModel):
     brawler_id: int
     name: str
-    confidence: float
+    map_win_rate: float
+    pick_score: float
     reason: str
 
 
@@ -96,7 +97,8 @@ def create_recommendations(
             RecommendationItemResponse(
                 brawler_id=item.brawler_id,
                 name=item.name,
-                confidence=item.confidence,
+                map_win_rate=item.map_win_rate,
+                pick_score=item.pick_score,
                 reason=item.reason,
             )
             for item in items[:3]

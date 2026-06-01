@@ -39,7 +39,8 @@ class RecommendationRequest:
 class RecommendationItem:
     brawler_id: int
     name: str
-    confidence: float
+    map_win_rate: float
+    pick_score: float
     reason: str
 
 
@@ -216,16 +217,20 @@ def get_recommendations(request: RecommendationRequest) -> list[RecommendationIt
         brawler_names=brawler_names,
     )
     top = fused[:3]
-    confidences = confidence_from_scores([score for _, score, _ in top])
+    pick_scores = confidence_from_scores([score for _, score, _ in top])
 
     return [
         RecommendationItem(
             brawler_id=brawler_id,
             name=brawler_names.get(brawler_id, f"Brawler {brawler_id}"),
-            confidence=round(confidence, 4),
+            map_win_rate=round(
+                float(store.win_rates.get((brawler_id, request.map_id), 0.0)),
+                4,
+            ),
+            pick_score=round(pick_score, 4),
             reason=reason,
         )
-        for (brawler_id, _score, reason), confidence in zip(top, confidences)
+        for (brawler_id, _score, reason), pick_score in zip(top, pick_scores)
     ]
 
 
